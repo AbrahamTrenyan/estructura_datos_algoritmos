@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct empleados
+{
+    char nombre [30];
+    int edad;
+    float sueldo;
+    struct empleados *sig;
+}nodoempleado;
+
+void cargar(nodoempleado *h){
+    printf("ingrese nombre");
+    scanf("%s", h->nombre);
+    if(strcmp(h->nombre,"x")==0)
+        h->sig=NULL;
+    else{
+        printf("ingrese edad");
+        scanf("%d", &h->edsd);
+        printf("ingrese sueldo");
+        scanf("%f", &h->sueldo);
+        h->sig=(nodoempleado*)malloc(sizeof(nodoempleado));
+        cargar(h->sig);
+    }
+}
+void mostrar(nodoempleado*h){
+    if(h->sig!=NULL)
+        printf("%s", h->nombre);
+        printf("%s", h->edad);
+        printf("%s", h->sueldo);
+        mostrar(h->sig);
+}
+int main(){
+    nodoempleado *p=NULL;
+    p=(nodoempleado*)malloc(sizeof(nodoempleado));
+    //creo el nodo con p como cabeza de lista, casteo el puntero generico que me devuelve el malloc a mi tipo de dato.
+    cargar(p);
+    mostrar(p);
+}
